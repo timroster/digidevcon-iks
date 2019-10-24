@@ -5,6 +5,7 @@ You will already need an IBM Cloud account and an IBM Kubernetes Service cluster
 ## Set up the web terminal
 
 1. Log in to the [IBM Cloud](https://cloud.ibm.com) to the dashboard
+
 2. Click on the top left navigation menu and select **Kubernetes**
 
     ![Navigation Menu](../.gitbook/assets/navigation-menu.png)
@@ -45,4 +46,18 @@ You will already need an IBM Cloud account and an IBM Kubernetes Service cluster
 
     If your output looks like that - you're good to go with the rest of the lab exercises.
 
-## 
+## Clone the lab repository
+
+1. In some of the labs, you will be creating Kubernetes resources by applyig `.yaml` files representing the desired state for the resource. To save typing in all of that, clone the lab repository into your web terminal:
+
+    ```text
+    $ git clone https://github.com/timroster/digidevcon-iks
+    Cloning into 'digidevcon-iks'...
+    remote: Enumerating objects: 61, done.
+    remote: Counting objects: 100% (61/61), done.
+    remote: Compressing objects: 100% (44/44), done.
+    remote: Total 61 (delta 13), reused 61 (delta 13), pack-reused 0
+    Unpacking objects: 100% (61/61), done.
+    ```
+
+Continue on to the [next exercise](../exercise-1/README.md).
