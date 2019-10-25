@@ -2,7 +2,7 @@
 
 The guestbook example shows how to build a simple multi-tier web application using Kubernetes and Docker. The application consists of a web front end, Redis master for storage, and replicated set of Redis slaves, all for which we will create Kubernetes deployments, pods, and services.
 
-There are two versions of this application. Version 1 (in the `v1` directory) is the example application itself, while version 2 (in the `v2` directory) extends the application by adding additional features that leverage the Watson Tone Analyzer service. The `v1` directory has a `README.md` file if you are interested in exploring the base example on your own with a Kubernetes cluster.
+There are two versions of this application. Version 1 (in the `v1` directory) is the the basic guestbook application in go with deployment files for you to exampine at your convenience. Version 2 (in the `v2` directory) extends the guestbook example with additional functionality to call the IBM Watson Tone Analyzer service.
 
 The `v2` directory contains the application version that will be the focus for the digital developer conference hands-on lab.
 
