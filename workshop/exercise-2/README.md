@@ -172,4 +172,10 @@ Before we continue, let's delete the application so we can learn about a differe
 
  To remove the service, use `kubectl delete service guestbook`.
 
+ ## Deeper dive on configuring resources
+
+ Although it was convenient to create the guestbook deployment using the cli, in practice most applications and other kubernetes objects are created using configuration files in `.yaml` format. For example, the [`guestbook-deployment.yaml`](../../v1/guestbook-deployment.yaml) file is an example configuration file that would deploy the guestbook image with a total of 3 instances. This file shows the key parts needed for each kubenetes object. After the API version and resource type, there is a `metadata` section which specfies the name of the resource and a set of labels. Then, there is a `spec` section which defines the desired state. First, there's the definition of the [**replica set**](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) object for the deployment. Within the **replica set**, there is a template for the pod controlled by the set. Within this template, you can find labels applied at the pod level and the `spec` for the container(s) that will be deployed with each pod.
+
+ In the last section of this lab, you will again deploy the guestbook application, along with other objects for the multi-tier application using resource files.
+
 After these are deleted, proceed to the [next lab of this course](../exercise-3/README.md)
