@@ -11,4 +11,4 @@ Lab Outline:
 * Creating an instance of Tone Analyzer
 * Deploy the Guestbook Application with the Tone Analyzer
 
-Ready? Let's get started by [setting up a web terminal and getting the code][exercise-0/README.md]
+Ready? Let's get started by [setting up a web terminal and getting the code](exercise-0/README.md)
