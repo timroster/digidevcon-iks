@@ -1,4 +1,4 @@
-# Lab setup - web terminal and resources
+# Lab setup - get web terminal and content
 
 You will already need an IBM Cloud account and an IBM Kubernetes Service cluster (free or paid) in order to proceed.
 
@@ -8,7 +8,7 @@ You will already need an IBM Cloud account and an IBM Kubernetes Service cluster
 
 2. Click on the top left navigation menu and select **Kubernetes**
 
-    ![Navigation Menu](../.gitbook/assets/navigation-menu.png)
+    ![Navigation Menu](../.gitbook/assets/navigation-menu-exp.png)
 
 3. Open the control panel for your cluster by clicking on the name
 

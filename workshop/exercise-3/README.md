@@ -69,7 +69,7 @@ The Operator Framework provides support for Kubernetes-native extensions to mana
     ibmcloud target -g Default
     ```
 
-1. Use the script from the IBM Cloud operator repository to create the API key and add it as a secret to the `default` project on Minishift:
+1. Use the script from the IBM Cloud operator repository to create the API key and add it as a secret to the `default` namespace in the kubernetes cluster:
 
     ```text
     curl -sL https://raw.githubusercontent.com/IBM/cloud-operators/master/hack/config-operator.sh | bash

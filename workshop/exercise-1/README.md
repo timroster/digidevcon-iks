@@ -1,4 +1,4 @@
-# Deploy an application on kubernetes
+# Deploy an application on Kubernetes
 
 In this part of the lab we will deploy an application called `guestbook` that has already been built and uploaded to DockerHub under the name`ibmcom/guestbook:v1`. In Kubernetes, creating an application means deploying a set of pods that run containers. In this lab, you will begin with the most simple scenario of creating a deployment with a single pod using the `kubectl` cli.
 
