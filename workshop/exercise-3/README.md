@@ -89,7 +89,13 @@ The Operator Framework provides support for Kubernetes-native extensions to mana
     ibmcloud-operator-7dd98d9754-lphll   1/1       Running   0          1m
     ```
 
-## Summary
+## Understanding Operators
+
+The [Operator Pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) is an emerging approach to extend through automation the expertise of human operators into the cluster environment. Operators are intended to support applications and management of other resources in and related to kubernetes clusters starting at installation, but continuing to day 2 operations of monitoring, backup, fault recovery and of course updates.
+
+![Operator Pattern](../.gitbook/assets/operator-pattern.png)
+
+Operators are implemented by custom code that is a client of the Kubernetes API that implements a controller for a [**Custom Resource**](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). In addition to the IBM Cloud Operator, there are many operators available that can manage resources within your cluster from the [Operator Hub](https://operatorhub.io). Operators are available to install many databases, monitoring tools, application development frameworks, application runtimes and more.
 
 Your cluster now has the IBM Cloud operator installed. This operator is able to configure two kinds in the cluster, a **Service** and a **Binding**. The **Service** defines a specific IBM Cloud service instance type to create, and the **Binding** specifies a named binding of a service instance to a secret in the cluster. For more details about the IBM Cloud operator see the [project repository](https://github.com/IBM/cloud-operators)
 
