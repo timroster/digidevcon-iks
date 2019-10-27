@@ -8,27 +8,27 @@ Log in to the [IBM Cloud](https://cloud.ibm.com) to access the dashboard.
 
 Click on the top left navigation menu and select **Kubernetes**.
 
-![Navigation Menu](../.gitbook/assets/navigation-menu-ds.png)
+![Navigation Menu](../.gitbook/assets/navigation-menu.png)
 
 Open the control panel for your cluster by clicking on the name.
 
-![Open Cluster](../.gitbook/assets/open-cluster-ds.png)
+![Open Cluster](../.gitbook/assets/open-cluster.png)
 
 Click on the **Web terminal** button.
 
-![Open Web Terminal](../.gitbook/assets/open-web-terminal-ds.png)
+![Open Web Terminal](../.gitbook/assets/open-web-terminal.png)
 
 Click on the **Install** button if prompted (this won't be shown if the terminal is already installed). Getting the terminal ready will take a couple of minutes. If you click on the **Web terminal** button before it's ready you will see:
 
-![Kubernetes terminal unavailable](../.gitbook/assets/terminal-unavailable-ds.png)
+![Kubernetes terminal unavailable](../.gitbook/assets/terminal-unavailable.png)
 
 Open the web terminal - it will initially display at the bottom of the browser panel. Click on the expand button to open the terminal in a full browser tab:
 
-![Expand the web terminal](../.gitbook/assets/expand-terminal-ds.png)
+![Expand the web terminal](../.gitbook/assets/expand-terminal.png)
 
 Run the `ibmcloud ks clusters` command to verify the terminal and setup for access to the cluster:
 
-![Confirm clustert access](../.gitbook/assets/terminal-ready-ds.png)
+![Confirm clustert access](../.gitbook/assets/terminal-ready.png)
 
 Configure the `kubectl` cli available within the terminal for access to your cluster.
 
