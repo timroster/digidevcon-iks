@@ -6,9 +6,13 @@ For this lab, you need a running deployment of the `guestbook` application from 
 
 ## Scale apps with replicas
 
-A *replica* is a copy of a pod that contains a running service. By havingm multiple replicas of a pod, you can ensure your deployment has the available resources to handle increasing load on your application.
+A *replica* is a copy of a pod that contains a running service. By having multiple replicas of a pod, you can ensure your deployment has the available resources to handle increasing load on your application.
 
-1. `kubectl` provides a `scale` subcommand to change the size of an existing deployment. Let's increase our capacity from a single running instance of `guestbook` up to 10 instances:
+1. `kubectl` provides a `scale` subcommand to change the size of an existing deployment. Let's increase our capacity from a single running instance of `guestbook` up to 10 instances using:
+
+   ```text
+   kubectl scale --replicas=10 deployment guestbook
+   ```
 
    ``` console
    $ kubectl scale --replicas=10 deployment guestbook
@@ -18,7 +22,10 @@ A *replica* is a copy of a pod that contains a running service. By havingm multi
    Kubernetes will now try to make reality match the desired state of 10 replicas by starting 9 new pods with the same configuration as the first.
 
 1. To see your changes being rolled out, you can run:
-   `kubectl rollout status deployment guestbook`.
+
+    ```text
+   kubectl rollout status deployment guestbook
+   ```
 
    The rollout might occur so quickly that the following messages might
    _not_ display:
@@ -38,7 +45,10 @@ A *replica* is a copy of a pod that contains a running service. By havingm multi
    ```
 
 1. Once the rollout has finished, ensure your pods are running by using:
-   `kubectl get pods`.
+
+    ```text
+   kubectl get pods
+   ```
 
    You should see output listing 10 replicas of your deployment:
 
@@ -67,11 +77,17 @@ To update and roll back:
 
 1. Using `kubectl`, you can now update your deployment to use the `v2` image. `kubectl` allows you to change details about existing resources with the `set` subcommand. We can use it to change the image being used.
 
-    ```$ kubectl set image deployment/guestbook guestbook=ibmcom/guestbook:v2```
+    ```text
+    kubectl set image deployment/guestbook guestbook=ibmcom/guestbook:v2
+    ```
 
    Note that a pod could have multiple containers, each with its own name. Each image can be changed individually or all at once by referring to the name. In the case of our `guestbook` Deployment, the container name is also `guestbook`. Multiple containers can be updated at the same time. ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
 
-1. Run `kubectl rollout status deployment/guestbook` to check the status of the rollout. The rollout might occur so quickly that the following messages might _not_ display:
+1. Check the status of the rollout. The rollout might occur so quickly that the example messages might _not_ display:
+
+    ```text
+    kubectl rollout status deployment/guestbook
+    ```
 
    ```console
    $ kubectl rollout status deployment/guestbook
@@ -114,9 +130,15 @@ To update and roll back:
 
    Remember, to get the "nodeport" and "public-ip" use:
 
-   `$ kubectl describe service guestbook`
+   ````text
+   kubectl describe service guestbook
+   ```
+
    and
-   `$ ibmcloud ks workers <name-of-cluster>`
+
+   ```text
+   ibmcloud ks workers <name-of-cluster>
+   ```
 
    To verify that you're running "v2" of guestbook, look at the title of the page,
    it should now be `Guestbook - v2`
@@ -132,6 +154,10 @@ To update and roll back:
    the status.
 
 1. When doing a rollout, you see references to *old* replicas and *new* replicas. The *old* replicas are the original 10 pods deployed when we scaled the application. The *new* replicas come from the newly created pods with the different image. All of these pods are owned by the Deployment. The deployment manages these two sets of pods with a resource called a ReplicaSet. We can see the guestbook ReplicaSets with:
+
+   ```text
+   kubectl get replicasets -l app=guestbook
+   ```
 
    ```console
    $ kubectl get replicasets -l app=guestbook
