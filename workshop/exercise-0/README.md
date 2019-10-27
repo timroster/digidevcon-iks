@@ -8,7 +8,7 @@ Log in to the [IBM Cloud](https://cloud.ibm.com) to access the dashboard.
 
 Click on the top left navigation menu and select **Kubernetes**.
 
-![Navigation Menu](../.gitbook/assets/navigation-menu.png)
+![Navigation Menu](../.gitbook/assets/navigation-menu-ds.png)
 
 Open the control panel for your cluster by clicking on the name.
 
@@ -16,7 +16,7 @@ Open the control panel for your cluster by clicking on the name.
 
 Click on the **Web terminal** button.
 
-![Open Web Termina](../.gitbook/assets/open-web-terminal.png)
+![Open Web Terminal](../.gitbook/assets/open-web-terminal.png)
 
 Click on the **Install** button if prompted (this won't be shown if the terminal is already installed). Getting the terminal ready will take a couple of minutes. If you click on the **Web terminal** button before it's ready you will see:
 
