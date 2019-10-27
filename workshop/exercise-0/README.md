@@ -24,7 +24,7 @@ Click on the **Install** button if prompted (this won't be shown if the terminal
 
 Open the web terminal - it will initially display at the bottom of the browser panel. Click on the expand button to open the terminal in a full browser tab:
 
-![Expand the web terminal](../.gitbook/assets/expand-terminal.png)
+![Expand the web terminal](../.gitbook/assets/expand-terminal-ds.png)
 
 Run the `ibmcloud ks clusters` command to verify the terminal and setup for access to the cluster:
 
