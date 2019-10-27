@@ -4,9 +4,11 @@ In this part of the lab we will deploy an application called `guestbook` that ha
 
 1. Create the `guestbook` application deployment:
 
-   ```$ kubectl create deployment guestbook --image=ibmcom/guestbook:v1```
+   ```kubectl create deployment guestbook --image=ibmcom/guestbook:v1```
 
-   This action will take a bit of time. To check the status of the running application, you can use `$ kubectl get pods`.
+   This action will take a bit of time. To check the status of the running application, you can use:
+
+   ```kubectl get pods```
 
    You should see output similar to the following:
 

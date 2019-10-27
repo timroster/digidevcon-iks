@@ -4,21 +4,21 @@ You will already need an IBM Cloud account and an IBM Kubernetes Service cluster
 
 ## Set up the web terminal
 
-Log in to the [IBM Cloud](https://cloud.ibm.com) to access the dashboard
+Log in to the [IBM Cloud](https://cloud.ibm.com) to access the dashboard.
 
-Click on the top left navigation menu and select **Kubernetes**
+Click on the top left navigation menu and select **Kubernetes**.
 
-![Navigation Menu](../.gitbook/assets/navigation-menu-exp.png)
+![Navigation Menu](../.gitbook/assets/navigation-menu.png)
 
-Open the control panel for your cluster by clicking on the name
+Open the control panel for your cluster by clicking on the name.
 
 ![Open Cluster](../.gitbook/assets/open-cluster.png)
 
-Click on the **Web terminal** button
+Click on the **Web terminal** button.
 
 ![Open Web Termina](../.gitbook/assets/open-web-terminal.png)
 
-Click on the **Install** button if prompted (this won't be shown if the terminal is already installed). Getting the terminal ready will take a couple of minutes. If you click on the **Web terminal** button before it's ready you will see
+Click on the **Install** button if prompted (this won't be shown if the terminal is already installed). Getting the terminal ready will take a couple of minutes. If you click on the **Web terminal** button before it's ready you will see:
 
 ![Kubernetes terminal unavailable](../.gitbook/assets/terminal-unavailable.png)
 
@@ -30,13 +30,13 @@ Run the `ibmcloud ks clusters` command to verify the terminal and setup for acce
 
 ![Confirm clustert access](../.gitbook/assets/terminal-ready.png)
 
-Configure the `kubectl` cli available within the terminal for access to your cluster.verify access to the Kubernetes API
+Configure the `kubectl` cli available within the terminal for access to your cluster.
 
 ```text
 eval $(ibmcloud ks cluster-config --cluster mycluster --export)
 ```
 
-Verify access to the Kubernetes API
+Verify access to the Kubernetes API.
 
 ```text
 kubectl get namespace
