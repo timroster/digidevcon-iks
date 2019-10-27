@@ -15,6 +15,12 @@ The Operator Framework provides support for Kubernetes-native extensions to mana
 
     ```text
     kubectl get pods --namespace olm
+    ```
+
+    Wait until there is a total of 6 pods running
+
+    ```console
+    $ kubectl get pods --namespace olm
     NAME                                READY     STATUS    RESTARTS   AGE
     catalog-operator-6bb8ffd7c5-4jwwz   1/1       Running   0          2m
     olm-operator-78ff5d69cf-2ssbs       1/1       Running   0          2m
@@ -81,9 +87,15 @@ The Operator Framework provides support for Kubernetes-native extensions to mana
     kubectl create -f https://operatorhub.io/install/ibmcloud-operator.yaml
     ```
 
-    Check that the pod for the IBM Cloud operator is running:
+    Check that the pod for the IBM Cloud operator is running with:
 
-    ```bash
+    ```text
+    kubectl get pods --namespace operators
+    ```
+
+    You should see after a moment that the pod for the operator is running:
+
+    ```console
     $ kubectl get pods --namespace operators
     NAME                                 READY     STATUS    RESTARTS   AGE
     ibmcloud-operator-7dd98d9754-lphll   1/1       Running   0          1m
@@ -95,7 +107,9 @@ The [Operator Pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/ope
 
 ![Operator Pattern](../.gitbook/assets/operator-pattern.png)
 
-Operators are implemented by custom code that is a client of the Kubernetes API that implements a controller for a [**Custom Resource**](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). In addition to the IBM Cloud Operator, there are many operators available that can manage resources within your cluster from the [Operator Hub](https://operatorhub.io). Operators are available to install many databases, monitoring tools, application development frameworks, application runtimes and more.
+Operators are implemented by custom code that is a client of the Kubernetes API that implements a controller for a [**Custom Resource**](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). Resources that implement the operator run outside of the Kubernetes control plane, so as you saw in this exercise, the pods that implement the operator will usually be deployed to workers on the cluster.
+
+In addition to the IBM Cloud Operator, there are many operators available that can manage resources within your cluster from the [Operator Hub](https://operatorhub.io). Operators are available to install many databases, monitoring tools, application development frameworks, application runtimes and more.
 
 Your cluster now has the IBM Cloud operator installed. This operator is able to configure two kinds in the cluster, a **Service** and a **Binding**. The **Service** defines a specific IBM Cloud service instance type to create, and the **Binding** specifies a named binding of a service instance to a secret in the cluster. For more details about the IBM Cloud operator see the [project repository](https://github.com/IBM/cloud-operators)
 
