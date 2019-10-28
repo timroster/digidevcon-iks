@@ -53,6 +53,7 @@ Use the `redis-master-deployment.yaml` file to create a [replication controller]
     $ kubectl get deploy
     NAME           READY   UP-TO-DATE   AVAILABLE   AGE
     redis-master   1/1     1            1           15s
+    ```
 
     ```text
     kubectl get replicaset
@@ -78,7 +79,6 @@ Use the `redis-master-deployment.yaml` file to create a [replication controller]
     $ kubectl get pods
     NAME                            READY   STATUS    RESTARTS   AGE
     redis-master-7b7968db76-8mjqg   1/1     Running   0          67s
-    ...
     ```
 
     Result: You'll see a single Redis master pod (may take up to thirty seconds).
