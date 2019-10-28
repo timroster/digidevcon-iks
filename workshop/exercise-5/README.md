@@ -257,19 +257,6 @@ Just like the others, we create a service to group the guestbook pods. Since gue
 
     Result: The service is created, and exposed as a NodePort and in this example is listening on `30796`.
 
-    To find the IP address for the worker node:
-
-    ```text
-    ibmcloud ks workers mycluster
-    ```
-
-    ```console
-    $ ibmcloud ks workers mycluster
-    ID                                                     Public IP         Private IP      Flavor   State    Status   Zone    Version
-    kube-bmotc1dd0i2tk1jloing-mycluster-default-0000008d   184.172.252.167   10.76.195.211   free     normal   Ready    hou02   1.14.7_1535
-
-    Result: To reach the guestbook application in this example, the URL would be http://184.172.252.167:30796
-
 ## Create the analyzer pod
 
 This is a simple PHP Flask application that creates a POST endpoint `/tone` and takes the input text and sends it to the Watson Tone Analyzer service. In the [analyzer-deployment.yaml](../../v2/analyzer-deployment.yaml) the spec for the pod defines environment variables for the service credentials by reading the secret `binding-tone` created by the IBM Cloud operator.
@@ -332,7 +319,33 @@ Create a service so that the guestbook application can call the analyzer pod
 
 ## View the guestbook
 
-You can now play with the guestbook that you just created by opening it in a browser, use the IP and NodePort for your deployment.
+You can now play with the guestbook that you just created by opening it in a browser, use the IP and NodePort for your deployment. Find the IP address for your cluster using this command (use the Public IP):
+
+```text
+ibmcloud ks workers mycluster
+```
+
+```console
+$ ibmcloud ks workers mycluster
+ID                                                     Public IP         Private IP      Flavor   State    Status   Zone    Version
+kube-bmotc1dd0i2tk1jloing-mycluster-default-0000008d   184.172.252.167   10.76.195.211   free     normal   Ready    hou02   1.14.7_1535
+```
+
+In this example the IP is: `184.172.252.167`
+
+Get the nodeport (it will be different from the first exercise):
+
+```text
+kubectl get service guestbook
+```
+
+```console
+$ kubectl get service guestbook
+NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+guestbook   NodePort   172.21.64.67   <none>        3000:30796/TCP   9m16s
+```
+
+For this value of IP address and NodePort, you would use a url like `http://184.172.252.167:30796` to access the guestbook.
 
 Result: The guestbook displays in your browser:
 
