@@ -4,20 +4,6 @@ In this section, you will create the guestbook application. The application cons
 
 In a multiple tier application, there are two primary ways that service dependencies can be resolved. The [`v2/guestbook/main.go`](../../v2/guestbook/main.go) code provides examples of each. For Redis, the master endpoint is discovered through environment variables. These environment variables are set when the Redis services are started, so the service resources need to be created before the guestbook replication controller starts the guestbook pods. For the analyzer service, an http request is made to a hostname, which allows for resource discovery at the time when the request is made. Consequently, we'll follow a specific order when creating the application components. First up, the Redis components will be created, then the guestbook application, and finally the analyzer microservice.
 
-## Deployment steps
-
-* [Setup](#setup)
-* [Create the Redis master pod](#create-the-redis-master-pod)
-* [Create the Redis master service](#create-the-redis-master-service)
-* [Create the Redis slave pods](#create-the-redis-slave-pods)
-* [Create the Redis slave service](#create-the-redis-slave-service)
-* [Create the guestbook pods](#create-the-guestbook-pods)
-* [Create and expose the guestbook service](#create-and-expose-the-guestbook-service)
-* [Create the Analyzer pod](#create-the-analyzer-pod)
-* [Create the Analyzer service](#create-the-analyzer-service)
-* [View the guestbook](#view-the-guestbook)
-* [Cleanup](#cleanup)
-
 ## Setup
 
 Continue by working in the web terminal. Change to the `v2` folder where the deployment files reside:
