@@ -134,10 +134,10 @@ To update and roll back:
    kubectl describe service guestbook
    ```
 
-   and
+   and (replace *mycluster* below if you used a different name for your cluster):
 
    ```text
-   ibmcloud ks workers <name-of-cluster>
+   ibmcloud ks workers mycluster
    ```
 
    To verify that you're running "v2" of guestbook, look at the title of the page,
@@ -168,11 +168,19 @@ To update and roll back:
 
 Before we continue, let's delete the application so we can learn about a different way to achieve the same results by using resource files instead of providing command line options.
 
- To remove the deployment, use `kubectl delete deployment guestbook`.
+ To remove the deployment, use:
 
- To remove the service, use `kubectl delete service guestbook`.
+```text
+kubectl delete deployment guestbook
+```
 
- ## Deeper dive on configuring resources
+ To remove the service,use:
+
+ ```text
+ kubectl delete service guestbook
+ ```
+
+## Deeper dive on configuring resources
 
  Although it was convenient to create the guestbook deployment using the cli, in practice most applications and other kubernetes objects are created using configuration files in `.yaml` format. For example, the [`guestbook-deployment.yaml`](../../v1/guestbook-deployment.yaml) file is an example configuration file that would deploy the guestbook image with a total of 3 instances. This file shows the key parts needed for each kubenetes object. After the API version and resource type, there is a `metadata` section which specfies the name of the resource and a set of labels. Then, there is a `spec` section which defines the desired state. First, there's the definition of the [**replica set**](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) object for the deployment. Within the **replica set**, there is a template for the pod controlled by the set. Within this template, you can find labels applied at the pod level and the `spec` for the container(s) that will be deployed with each pod.
 
