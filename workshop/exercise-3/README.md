@@ -39,15 +39,15 @@ The Operator Framework provides support for Kubernetes-native extensions to mana
 
 1. Configure a namespace for the marketplace operators
 
-    ```text
-    kubectl apply -f - <<END
-    apiVersion: operators.coreos.com/v1alpha2
-    kind: OperatorGroup
-    metadata:
-      name: marketplace-operators
-      namespace: marketplace
-    END
-    ```
+```text
+kubectl apply -f - <<END
+apiVersion: operators.coreos.com/v1alpha2
+kind: OperatorGroup
+metadata:
+  name: marketplace-operators
+  namespace: marketplace
+END
+```
 
     At this point, you should be able to easily install any operator from the [operatorhub.io](https://operatorhub.io/) marketplace.
 
