@@ -30,7 +30,7 @@ For an application running within a Kubernetes cluster to be able to access an I
     kubectl get secret binding-tone
     ```
 
-    You should see confirmation of the secret, but there may be a short delay as the credentials are obtained by the operator, so repeat this command until you no longer see an error like: `Error from server (NotFound): secrets "binding-tone" not found`
+    You should see confirmation of the secret, but there may be a short delay as the credentials are obtained by the operator, so repeat this command until you no longer see an error like: *Error from server (NotFound): secrets "binding-tone" not found*
 
     ```bash
     $ kubectl get secret binding-tone

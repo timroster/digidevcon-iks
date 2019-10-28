@@ -23,27 +23,44 @@ In a multiple tier application, there are two primary ways that service dependen
 Continue by working in the web terminal. Change to the `v2` folder where the deployment files reside:
 
 ```text
-$ cd $HOME/digidevcon-iks/v2
+cd $HOME/digidevcon-iks/v2
 ```
 
 ## Create the Redis master pod
 
 Use the `redis-master-deployment.yaml` file to create a [replication controller](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/) and Redis master [pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/). The pod runs a Redis key-value server in a container. Using a replication controller is the preferred way to launch long-running pods, even for 1 replica, so that the pod benefits from the self-healing mechanism in Kubernetes (keeps the pods alive).
 
-1. Use the [redis-master-deployment.yaml](../../v2/redis-master-deployment.yaml) file to create the Redis master deployment in your Kubernetes cluster by running the `kubectl create -f` *`filename`* command:
+1. Use the [redis-master-deployment.yaml](../../v2/redis-master-deployment.yaml) file to create the Redis master deployment in your Kubernetes cluster:
+
+    ```text
+    kubectl create -f redis-master-deployment.yaml
+    ```
 
     ```console
     $ kubectl create -f redis-master-deployment.yaml
     deployment.apps/redis-master created
     ```
 
-1. To verify that the redis-master controller is up, list the deployment and replicaset you created in the cluster with the `kubectl get` command (if you don't specify a `--namespace`, the current project/namespace will be used.:
+1. To verify that the redis-master controller is up, list the deployment and replicaset you created in the cluster with the `kubectl get` command (if you don't specify a `--namespace`, the current project/namespace will be used):
+
+    ```text
+    kubectl get deploy
+    ```
+
+    this will show the current deployments in the namespace
 
     ```console
     $ kubectl get deploy
     NAME           READY   UP-TO-DATE   AVAILABLE   AGE
     redis-master   1/1     1            1           15s
 
+    ```text
+    kubectl get replicaset
+    ```
+
+    this will show the current deployments in the namespace
+
+    ```console
     $ kubectl get replicaset
     NAME                      DESIRED   CURRENT   READY   AGE
     redis-master-7b7968db76   1         1         1       41s
@@ -51,7 +68,11 @@ Use the `redis-master-deployment.yaml` file to create a [replication controller]
 
     Result: The deployment creates the replicaset, which then creates the single Redis master pod.
 
-1. To verify that the redis-master pod is running, list the pods you created in cluster with the `kubectl get pods` command:
+1. Verify that the redis-master pod is running, by listing the pods you created in cluster:
+
+    ```text
+    kubectl get pods
+    ```
 
     ```console
     $ kubectl get pods
@@ -60,7 +81,7 @@ Use the `redis-master-deployment.yaml` file to create a [replication controller]
     ...
     ```
 
-    Result: You'll see a single Redis master pod and the machine where the pod is running after the pod gets placed (may take up to thirty seconds).
+    Result: You'll see a single Redis master pod (may take up to thirty seconds).
 
 ## Create the Redis master service
 
@@ -68,14 +89,22 @@ A Kubernetes [service](https://kubernetes.io/docs/concepts/services-networking/s
 
 Services find the pods to load balance based on pod labels. The pod that you created in previous step has the label `app=redis` and `role=master`. The selector field of the service determines which pods will receive the traffic sent to the service.
 
-1. Use the [redis-master-service.yaml](../../v2/redis-master-service.yaml) file to create the service in your Kubernetes cluster by running the `kubectl create -f` *`filename`* command:
+1. Use the [redis-master-service.yaml](../../v2/redis-master-service.yaml) file to create the service in your Kubernetes cluster:
+
+    ```text
+    kubectl create -f redis-master-service.yaml
+    ```
 
     ```console
     $ kubectl create -f redis-master-service.yaml
     service/redis-master created
     ```
 
-1. To verify that the redis-master service is up, list the services you created in the cluster with the `kubectl get services` command:
+1. To verify that the redis-master service is up, list the services you created in the cluster:
+
+    ```text
+    kubectl get services
+    ```
 
     ```console
     $ kubectl get services
@@ -89,16 +118,24 @@ Services find the pods to load balance based on pod labels. The pod that you cre
 
 ## Create the Redis slave pods
 
-The Redis master we created earlier is a single pod (REPLICAS = 1), while the Redis read slaves we are creating here are 'replicated' pods. In Kubernetes, a replication controller is responsible for managing the multiple instances of a replicated pod.
+The Redis master we created earlier is a single pod (REPLICAS = 1), while the Redis read slaves we are creating here are 'replicated' pods with 2 instances that will be started. In Kubernetes, a replication controller is responsible for managing the multiple instances of a replicated pod.
 
-1. Use the file [redis-slave-deployment.yaml](../../v2/redis-slave-deployment.yaml) to create the replication controller by running the `kubectl create -f` *`filename`* command:
+1. Use the file [redis-slave-deployment.yaml](../../v2/redis-slave-deployment.yaml) to create the replication controller:
+
+    ```text
+    kubectl create -f redis-slave-deployment.yaml
+    ```
 
     ```console
     $ kubectl create -f redis-slave-deployment.yaml
     deployment.apps/redis-slave created
     ```
 
-1. To verify that the redis-slave controller is running, run the `kubectl get rs` command:
+1. To verify that the redis-slave controller is running:
+
+    ```text
+    kubectl get rs
+    ```
 
     ```console
     $ kubectl get rs
@@ -109,7 +146,11 @@ The Redis master we created earlier is a single pod (REPLICAS = 1), while the Re
 
     Result: The deployment creates the replicaset, which then creates configures the Redis slave pods through the redis-master service (name:port pair, in our example that's `redis-master:6379`).
 
-1. To verify that the Redis master and slaves pods are running, run the `kubectl get pods` command:
+1. Verify that the Redis master and slaves pods are running:
+
+    ```text
+    kubectl get pods
+    ```
 
     ```console
     $ kubectl get pods
@@ -126,14 +167,22 @@ The Redis master we created earlier is a single pod (REPLICAS = 1), while the Re
 
 Just like the master, we want to have a service to proxy connections to the read slaves. In this case, in addition to discovery, the Redis slave service provides transparent load balancing to clients.
 
-1. Use the [redis-slave-service.yaml](../../v2/redis-slave-service.yaml) file to create the Redis slave service by running the `kubectl create -f` *`filename`* command:
+1. Use the [redis-slave-service.yaml](../../v2/redis-slave-service.yaml) file to create the Redis slave service:
+
+    ```text
+    kubectl create -f redis-slave-service.yaml
+    ```
 
     ```console
     $ kubectl create -f redis-slave-service.yaml
     service/redis-slave created
     ```
 
-1. To verify that the redis-slave service is up, list the services you created in the cluster with the `kubectl get services` command:
+1. To verify that the redis-slave service is up, list the services you created:
+
+    ```text
+    kubectl get services
+    ```
 
     ```console
     $ kubectl get services
@@ -149,7 +198,11 @@ Just like the master, we want to have a service to proxy connections to the read
 
 This is a simple Go `net/http` ([negroni](https://github.com/codegangsta/negroni) based) server that is configured to talk to either the slave or master services depending on whether the request is a read or a write. The pods we are creating expose a simple JSON interface and serves a jQuery-Ajax based UI. Like the Redis read slaves, these pods are also managed by a replication controller.
 
-1. Use the [guestbook-deployment.yaml](../../v2/guestbook-deployment.yaml) file to create the guestbook replication controller by running the `kubectl create -f` *`filename`* command:
+1. Use the [guestbook-deployment.yaml](../../v2/guestbook-deployment.yaml) file to create the guestbook replication controller:
+
+    ```text
+    kubectl create -f guestbook-deployment.yaml
+    ```
 
     ```console
     $ kubectl create -f guestbook-deployment.yaml
@@ -158,7 +211,11 @@ This is a simple Go `net/http` ([negroni](https://github.com/codegangsta/negroni
 
    Tip: If you want to modify the guestbook code it can be found in the `guestbook` directory, along with its Makefile. If you have pushed your custom image be sure to update the `image` property accordingly in the guestbook-deployment.yaml.
 
-1. To verify that the guestbook deployment is running, run the `kubectl get deploy` command:
+1. Verify that the guestbook deployment is running:
+
+    ```text
+    kubectl get deploy
+    ```
 
     ```console
     $ kubectl get deploy
@@ -168,7 +225,11 @@ This is a simple Go `net/http` ([negroni](https://github.com/codegangsta/negroni
     redis-slave    2/2     2            2           3m58s
     ```
 
-1. To verify that the guestbook pods are running (it might take up to thirty seconds to create the pods), list the pods you created in cluster with the `kubectl get pods` command:
+1. Verify that the guestbook pods are running (it might take up to thirty seconds to create the pods):
+
+    ```text
+    kubectl get pods
+    ```
 
     ```console
     $ kubectl get pods
@@ -185,15 +246,19 @@ This is a simple Go `net/http` ([negroni](https://github.com/codegangsta/negroni
 
 ## Create and expose the guestbook service
 
-Just like the others, we create a service to group the guestbook pods. Since guestbook uses a web application protocol we will expose it for access outside the cluster using an OpenShift Route.
+Just like the others, we create a service to group the guestbook pods. Since guestbook uses a web application protocol we will expose it for access outside the cluster using a service of type `NodePort.
 
-1. Use the [guestbook-service.yaml](../../v2/guestbook-service.yaml) file to create the guestbook service by running the `kubectl create -f` *`filename`* command:
+1. Use the [guestbook-service.yaml](../../v2/guestbook-service.yaml) file to create the guestbook service:
 
     ```text
     kubectl create -f guestbook-service.yaml
     ```
 
-1. To verify that the guestbook service is up, list the services you created in the cluster with the `kubectl get services` command:
+1. Verify that the guestbook service is up by listing the services in the cluster:
+
+    ```text
+    kubectl get services
+    ```
 
     ```console
     $ kubectl get services
@@ -206,7 +271,11 @@ Just like the others, we create a service to group the guestbook pods. Since gue
 
     Result: The service is created, and exposed as a NodePort and in this example is listening on `30796`.
 
-    To find (just to refresh our information) the IP address for the worker node:
+    To find the IP address for the worker node:
+
+    ```text
+    ibmcloud ks workers mycluster
+    ```
 
     ```console
     $ ibmcloud ks workers mycluster
@@ -219,7 +288,11 @@ Just like the others, we create a service to group the guestbook pods. Since gue
 
 This is a simple PHP Flask application that creates a POST endpoint `/tone` and takes the input text and sends it to the Watson Tone Analyzer service. In the [analyzer-deployment.yaml](../../v2/analyzer-deployment.yaml) the spec for the pod defines environment variables for the service credentials by reading the secret `binding-tone` created by the IBM Cloud operator.
 
-1. Use the [analyzer-deployment.yaml](../../v2/analyzer-deployment.yaml) file to create the analyzer replication controller by running the `kubectl create -f` *`filename`* command:
+1. Use the [analyzer-deployment.yaml](../../v2/analyzer-deployment.yaml) file to create the analyzer replication controller:
+
+    ```text
+    kubectl create -f analyzer-deployment.yaml
+    ```
 
     ```console
     $ kubectl create -f analyzer-deployment.yaml
@@ -228,7 +301,11 @@ This is a simple PHP Flask application that creates a POST endpoint `/tone` and 
 
    Tip: If you want to modify the analyzer code it can be found in the `analyzer` directory, along with its Makefile. If you have pushed your custom image be sure to update the `image` property accordingly in the analyzer-deployment.yaml.
 
-1. To verify that the guestbook deployment is running, run the `kubectl get deploy` command:
+1. Verify that the guestbook deployment is running:
+
+    ```text
+    kubectl get deploy
+    ```
 
     ```console
     $ kubectl get deploy
@@ -243,14 +320,17 @@ This is a simple PHP Flask application that creates a POST endpoint `/tone` and 
 
 Create a service so that the guestbook application can call the analyzer pod
 
-1. Use the [analyzer-service.yaml](../../v2/analyzer-service.yaml) file to create the analyzer service by running the `kubectl create -f` *`filename`* command:
+1. Use the [analyzer-service.yaml](../../v2/analyzer-service.yaml) file to create the analyzer service:
 
     ```text
-    $ kubectl create -f analyzer-service.yaml
-    service/analyzer created
+    kubectl create -f analyzer-service.yaml
     ```
 
-1. To verify that the analyzer service is up, list the services you created in the cluster with the `kubectl get services` command:
+1. To verify that the analyzer service is up, list the services created in the cluster:
+
+    ```text
+    kubectl get services
+    ```
 
     ```console
     $ kubectl get services
@@ -276,7 +356,11 @@ Result: The guestbook displays in your browser:
 
 After you're done playing with the guestbook, you can cleanup by deleting the guestbook service and removing the associated resources that were created, including routes, forwarding rules, target pools, and Kubernetes replication controllers and services.
 
-Delete all the resources sourced by the files in the `v2` directory by running the following `kubectl delete -f .` command:
+Delete all the resources sourced by the files in the `v2` directory:
+
+```text
+kubectl delete -f .
+```
 
 ```console
 $ kubectl delete -f .
