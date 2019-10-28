@@ -49,7 +49,7 @@ metadata:
 END
 ```
 
-    At this point, you should be able to easily install any operator from the [operatorhub.io](https://operatorhub.io/) marketplace.
+> At this point, you should be able to easily install any operator from the [operatorhub.io](https://operatorhub.io/) marketplace.
 
 ## Installing the IBM Cloud operator
 
