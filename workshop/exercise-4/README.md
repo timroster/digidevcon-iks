@@ -84,12 +84,12 @@ spec:
 
 Note that the API version is different from what you may have seen in other resource files in this lab. Since Kubernetes objects are scoped by the API, there's no conflict with the re-use of the `kind` **Service** in this CRD. Recall that in the internal Kubernetes API, a resource of `kind` **Service** is used to expose network ports running on pods. Here, the **Service** object type is used to descibe an IBM Cloud platform service from the catalog. The operator uses the `spec` of the resource to select the desired IBM Cloud service type and offering plan.
 
-The role of this operator is to manage instances of these services and also creating a **Binding** to the service that is stored as a secret in the cluster.
-The IBM Cloud operator will monitor the IBM Cloud account service instances. If something happens to the service instance, for example if it is deleted, the operator will create a new service instance and update the credentials stored in the binding secret.
+The role of the IBM Cloud operator is to manage instances of these services and also create a **Binding** to the service that is stored as a secret in the cluster.
+The operator will monitor the IBM Cloud account service instances. If something happens to the service instance, the operator will detect the change and take action. For example, if a the service instance is deleted, the operator will create a new service instance and update the credentials stored in the binding secret.
 
 ## Continue with deploying the guestbook application
 
-In the last section of the lab, you will use resource files and the `kubectl create` command to create a complex application topology that is very representative of a typical deployment on Kubernetes. This application will have a web front end written in go, it will persist data entered into the application in a redis database and the application will use an separate analyzer service that calls the IBM Watson Tone Analyzer service running outside of the Kubernetes cluster.
+In the last section of the lab, you will use resource files and the `kubectl create` command to create a complex application topology that is very representative of a typical deployment on Kubernetes. This application will have a web front end written in go, it will persist data entered into the application in a redis database and the application will have an analyzer service witten in python that calls the IBM Watson Tone Analyzer service running outside of the Kubernetes cluster.
 
 ![Guestbook Application Topology](../.gitbook/assets/guestbook-topology.png)
 

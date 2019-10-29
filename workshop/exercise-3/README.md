@@ -8,6 +8,9 @@ The Operator Framework provides support for Kubernetes-native extensions to mana
 
     ```text
     kubectl apply -f https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.10.0/crds.yaml
+    ```
+
+    ```text
     kubectl apply -f https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.10.0/olm.yaml
     ```
 
@@ -34,6 +37,8 @@ The Operator Framework provides support for Kubernetes-native extensions to mana
 
     ```text
     git clone https://github.com/operator-framework/operator-marketplace.git
+    ```
+    ```text
     kubectl apply -f operator-marketplace/deploy/upstream/
     ```
 
@@ -65,7 +70,7 @@ END
     ibmcloud target --cf
     ```
 
-    Check the outpuit from the `ibmcloud target` command. If there is no resource group set, resulting in a message including:
+    Check the output from the `ibmcloud target` command. If there is no resource group set, resulting in a message including:
 
     `Resource group:    No resource group targeted, use 'ibmcloud target -g RESOURCE_GROUP'`
 
@@ -103,14 +108,14 @@ END
 
 ## Understanding Operators
 
-The [Operator Pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) is an emerging approach to extend through automation the expertise of human operators into the cluster environment. Operators are intended to support applications and management of other resources in and related to kubernetes clusters starting at installation, but continuing to day 2 operations of monitoring, backup, fault recovery and of course updates.
+The [Operator Pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) is an emerging approach to extend through automation the expertise of human operators into the cluster environment. Operators are intended to support applications and management of other resources in and related to kubernetes clusters starting at installation, but continuing to day 2 operations of monitoring, backup, fault recovery and, of course, updates.
 
 ![Operator Pattern](../.gitbook/assets/operator-pattern.png)
 
-Operators are implemented by custom code that is a client of the Kubernetes API that implements a controller for a [**Custom Resource**](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). Resources that implement the operator run outside of the Kubernetes control plane, so as you saw in this exercise, the pods that implement the operator will usually be deployed to workers on the cluster.
+Operators are custom code that uses the Kubernetes API (as a client) to implement a controller for a [**Custom Resource**](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). Unlike the controllers built into the Kubernetes control plane which run on the Kubernetes master node, operators run outside of the Kubernetes control plan as pods on the worker nodes in the cluster. You can verify that fact by the `kubectl get pods` command above, which lists the pods of the operator running on a worker node. 
 
-In addition to the IBM Cloud Operator, there are many operators available that can manage resources within your cluster from the [Operator Hub](https://operatorhub.io). Operators are available to install many databases, monitoring tools, application development frameworks, application runtimes and more.
+In addition to the IBM Cloud Operator, there are many operators that can manage resources within your cluster available from the [Operator Hub](https://operatorhub.io). The Operator Hub includes many useful operators including operators that implement database installation, monitoring tools, application development frameworks, application runtimes and more.
 
-Your cluster now has the IBM Cloud operator installed. This operator is able to configure two kinds in the cluster, a **Service** and a **Binding**. The **Service** defines a specific IBM Cloud service instance type to create, and the **Binding** specifies a named binding of a service instance to a secret in the cluster. For more details about the IBM Cloud operator see the [project repository](https://github.com/IBM/cloud-operators)
+Your cluster now has the IBM Cloud operator installed. This operator is able to configure two custom resources in the cluster, a **Service** and a **Binding**. The **Service** defines a specific IBM Cloud service instance type to create, and the **Binding** specifies a named binding of a service instance to a secret in the cluster. For more details about the IBM Cloud operator see the [project repository](https://github.com/IBM/cloud-operators)
 
 Continue by using the IBM Cloud operator to [Create a Tone Analyzer service on IBM Cloud](../exercise-4/README.md)

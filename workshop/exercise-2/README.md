@@ -1,6 +1,6 @@
 # Scale and Update Deployments
 
-In this lab, you'll learn how to update the number of instances a deployment has and how to safely roll out an update of your application on Kubernetes. A key requirement of a container orchestration system is to automate the management steps of applications. Scaling up/down and handling application updates with support for rollback are a couple of essential use cases (but not the only ones).
+In this lab, you'll learn how to update the number of instances in a deployment has and how to roll out an update of your application on Kubernetes with zero downtime. A key requirement of a container orchestration system is to automate the management steps of applications. Scaling up/down and handling application updates with support for rollback are a couple of essential use cases (but not the only ones).
 
 For this lab, you need a running deployment of the `guestbook` application from the previous lab.
 
@@ -19,7 +19,7 @@ A *replica* is a copy of a pod that contains a running service. By having multip
    deployment "guestbook" scaled
    ```
 
-   Kubernetes will now try to make reality match the desired state of 10 replicas by starting 9 new pods with the same configuration as the first.
+   If you remember back to the architecture overview in the previous exercise, the `kubectl scale` command updates the desired state in the etcd database in Kubernetes. The watchers and controllers will now try to make reality match the desired state of 10 replicas by starting 9 new pods with the same configuration as the first.
 
 1. To see your changes being rolled out, you can run:
 
@@ -27,8 +27,7 @@ A *replica* is a copy of a pod that contains a running service. By having multip
    kubectl rollout status deployment guestbook
    ```
 
-   The rollout might occur so quickly that the following messages might
-   _not_ display:
+   The rollout might occur so quickly that you may only see `deployment "guestbook" successfully rolled out` for the output.
 
    ```console
    $ kubectl rollout status deployment guestbook
@@ -69,9 +68,9 @@ A *replica* is a copy of a pod that contains a running service. By having multip
 
 ## Update and roll back apps
 
-Kubernetes allows you to do rolling upgrade of your application to a new container image. This allows you to easily update the running image and also allows you to easily undo a rollout if a problem is discovered during or after deployment.
+Kubernetes allows you to do a rolling upgrade of your application to a new container image. Kubernetes allows you to easily update the running image but also allows you to easily undo a rollout if a problem is discovered during or after deployment.
 
-In the previous lab, we used an image with a `v1` tag. For our upgrade we'll use the image with the `v2` tag.
+In the previous lab, we used an image with a `v1` tag. For our upgrade, we'll use the image with the `v2` tag.
 
 To update and roll back:
 
@@ -83,7 +82,7 @@ To update and roll back:
 
    Note that a pod could have multiple containers, each with its own name. Each image can be changed individually or all at once by referring to the name. In the case of our `guestbook` Deployment, the container name is also `guestbook`. Multiple containers can be updated at the same time. ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
 
-1. Check the status of the rollout. The rollout might occur so quickly that the example messages might _not_ display:
+1. Check the status of the rollout. The rollout might occur so quickly that you may only see `deployment "guestbook" successfully rolled out` for the output.
 
     ```text
     kubectl rollout status deployment/guestbook
@@ -146,8 +145,7 @@ To update and roll back:
 1. If you want to undo your latest rollout, use:
 
    ```console
-   $ kubectl rollout undo deployment guestbook
-   deployment "guestbook"
+   kubectl rollout undo deployment guestbook
    ```
 
    You can then use `kubectl rollout status deployment/guestbook` to see
@@ -184,6 +182,6 @@ kubectl delete deployment guestbook
 
  Although it was convenient to create the guestbook deployment using the cli, in practice most applications and other kubernetes objects are created using configuration files in `.yaml` format. For example, the [`guestbook-deployment.yaml`](../../v1/guestbook-deployment.yaml) file is an example configuration file that would deploy the guestbook image with a total of 3 instances. This file shows the key parts needed for each kubenetes object. After the API version and resource type, there is a `metadata` section which specfies the name of the resource and a set of labels. Then, there is a `spec` section which defines the desired state. First, there's the definition of the [**replica set**](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) object for the deployment. Within the **replica set**, there is a template for the pod controlled by the set. Within this template, you can find labels applied at the pod level and the `spec` for the container(s) that will be deployed with each pod.
 
- In the last section of this lab, you will again deploy the guestbook application, along with other objects for the multi-tier application using resource files.
+ In the last section of this lab, you will again deploy the guestbook application, along with other objects for a multi-tier application using resource files.
 
 After these are deleted, proceed to the [next lab of this course](../exercise-3/README.md)
