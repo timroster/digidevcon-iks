@@ -38,6 +38,7 @@ The Operator Framework provides support for Kubernetes-native extensions to mana
     ```text
     git clone https://github.com/operator-framework/operator-marketplace.git
     ```
+
     ```text
     kubectl apply -f operator-marketplace/deploy/upstream/
     ```

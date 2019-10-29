@@ -11,4 +11,8 @@ Lab Outline:
 * Creating an instance of Tone Analyzer
 * Deploy the Guestbook Application with the Tone Analyzer
 
+{% hint style="info" %}
+In the exercises that follow you will see the actual command to run, followed by a separate example of running the command with the expected output. You only need to run the first example and never need to run a command you see preceded by a "$". You can even use the copy button on the right side of the command to make copying easier.
+{% endhint %}
+
 Ready? Let's get started by [setting up a web terminal and getting the code](exercise-0/README.md)

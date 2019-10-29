@@ -22,12 +22,10 @@ Use the `redis-master-deployment.yaml` file to create a [replication controller]
     kubectl create -f redis-master-deployment.yaml
     ```
 
-    > ```text
-    > [example output]
-    > $ kubectl create -f redis-master-deployment.yaml
-    > deployment.apps/redis-master created
-    > ```
-
+    ```console
+    $ kubectl create -f redis-master-deployment.yaml
+    deployment.apps/redis-master created
+    ```
 
 1. To verify that the redis-master controller is up, list the deployment and replicaset you created in the cluster with the `kubectl get` command (if you don't specify a `--namespace`, the current project/namespace will be used):
 
