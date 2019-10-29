@@ -80,7 +80,7 @@ Congratulations, you've now deployed an application to Kubernetes!
 
 ## Understanding what happened
 
-At its core, you can think of Kubernetes as being a highly-available database and a collection of watchers and controllers. Kubernetes objects, required metadata, such as a name, and their desired state are stored in this database and the watchers and controllers act to ensure that the configuration of actual resources in the cluster matches the state stored in the database.
+At its core, you can think of Kubernetes as being a highly-available database and a collection of watchers and controllers. Kubernetes objects and their required metadata, such as a name and their desired state, are stored in this database and the watchers and controllers act to ensure that the configuration of actual resources in the cluster matches the state stored in the database.
 
 ![Kubernetes conceptual diagram](../.gitbook/assets/kubernetes-concepts.png)
 

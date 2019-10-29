@@ -1,6 +1,6 @@
 # Deploy the Guestbook Application with the Tone Analyzer
 
-In this section, you will create the guestbook application. The application consists of a web front end, Redis master for storage, and replicated set of Redis slaves, all for which there are Kubernetes replication controllers, pods, and services. The `v2` version of the guestbook application accesses a service in a separate Kubernetes pod through a REST API endpoint to perform a tone analysis of the guestbook entries. This microservice uses the Watson Tone Analyzer service on IBM Cloud.
+In this section, you will re-create the guestbook application, but this time with more components in a multi-tier architecture. This application uses the `v2` version of the go application we used previously in the workshop as our web front end, and adds on 1) a Redis master for storage, 2) a replicated set of Redis slaves, and 3) a Python Flask application that calls the Watson Tone Analyzer service deployed in IBM Cloud. For all of these components, there are Kubernetes replication controllers, pods, and services. One of the main concerns with building a multi-tier application on Kubernetes, such as this one, is resolving dependencies between all of these seperately deployed components.
 
 In a multiple tier application, there are two primary ways that service dependencies can be resolved. The [`v2/guestbook/main.go`](../../v2/guestbook/main.go) code provides examples of each. For Redis, the master endpoint is discovered through environment variables. These environment variables are set when the Redis services are started, so the service resources need to be created before the guestbook replication controller starts the guestbook pods. For the analyzer service, an http request is made to a hostname, which allows for resource discovery at the time when the request is made. Consequently, we'll follow a specific order when creating the application components. First up, the Redis components will be created, then the guestbook application, and finally the analyzer microservice.
 
@@ -14,7 +14,7 @@ cd $HOME/digidevcon-iks/v2
 
 ## Create the Redis master pod
 
-Use the `redis-master-deployment.yaml` file to create a [replication controller](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/) and Redis master [pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/). The pod runs a Redis key-value server in a container. Using a replication controller is the preferred way to launch long-running pods, even for 1 replica, so that the pod benefits from the self-healing mechanism in Kubernetes (keeps the pods alive).
+Use the `redis-master-deployment.yaml` file to create a [replication controller](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/) and Redis master [pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/). The pod runs a Redis key-value server in a container. Using a replication controller is the preferred way to launch long-running pods, even for 1 replica, so that the pod inherits benefits from the self-healing mechanism in Kubernetes (i.e. keeps the pods alive).
 
 1. Use the [redis-master-deployment.yaml](../../v2/redis-master-deployment.yaml) file to create the Redis master deployment in your Kubernetes cluster:
 
@@ -195,7 +195,7 @@ This is a simple Go `net/http` ([negroni](https://github.com/codegangsta/negroni
     deployment.apps/guestbook-v2 created
     ```
 
-   Tip: If you want to modify the guestbook code it can be found in the `guestbook` directory, along with its Makefile. If you have pushed your custom image be sure to update the `image` property accordingly in the guestbook-deployment.yaml.
+> Tip: If you want to modify the guestbook code it can be found in the `guestbook` directory, along with its Makefile. If you have pushed your custom image be sure to update the `image` property accordingly in the guestbook-deployment.yaml.
 
 1. Verify that the guestbook deployment is running:
 
@@ -259,7 +259,7 @@ Just like the others, we create a service to group the guestbook pods. Since gue
 
 ## Create the analyzer pod
 
-This is a simple PHP Flask application that creates a POST endpoint `/tone` and takes the input text and sends it to the Watson Tone Analyzer service. In the [analyzer-deployment.yaml](../../v2/analyzer-deployment.yaml) the spec for the pod defines environment variables for the service credentials by reading the secret `binding-tone` created by the IBM Cloud operator.
+This is a simple Python Flask application that creates a POST endpoint `/tone` and takes the input text and sends it to the Watson Tone Analyzer service. In the [analyzer-deployment.yaml](../../v2/analyzer-deployment.yaml) the spec for the pod defines environment variables for the service credentials by reading the secret `binding-tone` created by the IBM Cloud operator.
 
 1. Use the [analyzer-deployment.yaml](../../v2/analyzer-deployment.yaml) file to create the analyzer replication controller:
 
