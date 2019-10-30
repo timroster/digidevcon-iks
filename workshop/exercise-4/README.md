@@ -55,7 +55,7 @@ You can return to your IBM Cloud console and see that the tone analyzer service 
 1. Return to the *Kubernetes Terminal* tab in your web browser and enter this command to extract and decode the apikey from the secret created by the IBM Cloud Operator:
 
     ```text
-    kubectl get secret binding-tone -o yaml | grep " apikey" | cut -f2 -d":" | base64 -d && echo
+    kubectl get secret binding-tone -o=jsonpath='{.data.apikey}' | base64 -d && echo
     ```
 
     Notice how the string displayed is exactly the same as the service API Key visible from the control panel for the service.

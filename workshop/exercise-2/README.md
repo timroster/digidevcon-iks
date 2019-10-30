@@ -139,8 +139,7 @@ To update and roll back:
    ibmcloud ks workers mycluster
    ```
 
-   To verify that you're running "v2" of guestbook, look at the title of the page,
-   it should now be `Guestbook - v2`
+   To verify that you're running "v2" of guestbook, press down **shift** while clicking on reload to discard the cached content and look at the title of the page, it should now be `Guestbook - v2`
 
 1. If you want to undo your latest rollout, use:
 
