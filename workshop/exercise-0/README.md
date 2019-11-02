@@ -26,7 +26,13 @@ Open the web terminal - it will initially display at the bottom of the browser p
 
 ![Expand the web terminal](../.gitbook/assets/expand-terminal.png)
 
-Run the `ibmcloud ks clusters` command to verify the terminal and setup for access to the cluster:
+Run the `ibmcloud ks clusters` command to verify the terminal and setup for access to the cluster
+
+```text
+ibmcloud ks clusters
+```
+
+> it's ok to ignore warnings you may see about versions of plugins or kubernetes cluster versions
 
 ![Confirm clustert access](../.gitbook/assets/terminal-ready.png)
 
