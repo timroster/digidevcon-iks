@@ -33,10 +33,10 @@ The Operator Framework provides support for Kubernetes-native extensions to mana
     packageserver-567b8d96b7-hlx8g      0/1       Running   0          11s
     ```
 
-1. Install the Marketplace Operator (allows for adding operators from the operator marketplace) perform these steps from a folder/directory outside of the `guestbook-openshift` repository folder:
+1. Install the Marketplace Operator (allows for adding operators from the operator marketplace). A copy of the marketplace operator deployment files is included in the workshop repository.
 
     ```text
-    git clone https://github.com/operator-framework/operator-marketplace.git
+    cd $HOME/digidevcon-iks
     ```
 
     ```text

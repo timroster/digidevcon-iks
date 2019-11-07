@@ -7,7 +7,7 @@ For an application running within a Kubernetes cluster to be able to access an I
 1. Change into the `digidevcon-iks` directory. apply the `tone.yaml` file. This file defines a **Service** and **Binding** resource:
 
     ```console
-    cd digidevcon-iks
+    cd $HOME/digidevcon-iks
     ```
 
 1. Apply the `tone.yaml` file using kubectl. This file defines a **Service** and **Binding** resource:
