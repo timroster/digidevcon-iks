@@ -65,6 +65,23 @@ END
     ibmcloud login
     ```
 
+1. Check your login default region to verify that there is a Cloud Foundry organization and space with this command:
+
+    ```text
+    ibmcloud account orgs
+    ```
+
+    If there is output like:
+
+    ```text
+    Getting orgs in region 'us-south' as myemail@example.com ...
+    Retrieving current account...
+    No organizations were found.
+    ```
+
+    You need to add a space in the region shown in the output (in this example us-south) to your cloud account. Go to the [Cloud Foundry Orgs](https://cloud.ibm.com/account/cloud-foundry) for your account, and then click on the **Add a Space** button. Choose the region from the pulldown and enter a name like `dev` for the space and click on **Save**
+
+
 1. In order to be able to provision Cloud Foundry services, choose the correct Org and Space for the IBM Cloud account (this will choose a default Org and Space if there is only one available in the account. Otherwise it will prompt )
 
     ```text
