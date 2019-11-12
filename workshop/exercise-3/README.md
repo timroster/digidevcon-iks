@@ -79,18 +79,16 @@ END
     No organizations were found.
     ```
 
-    You **need** to add a space in the region shown in the output (in this example us-south) to your cloud account. Go to the [Cloud Foundry Orgs](https://cloud.ibm.com/account/cloud-foundry) for your account.
-
-    ![ ](../.gitbook/assets/whitespace.png)
-  
-    Then, click on the organization name (it will be your email by default) and then click on the **Add a Space** button. Choose the region from the pulldown and enter a name like `dev` for the space and click on **Save**
-
-    ![ ](../.gitbook/assets/whitespace.png)
-
-1. In order to be able to provision Cloud Foundry services, choose the correct Org and Space for the IBM Cloud account (this will choose a default Org and Space if there is only one available in the account. Otherwise it will prompt )
+    Skip forward to the next step. Otherwise, if a Cloud Foundry organization is shown run the command:
 
     ```text
     ibmcloud target --cf
+    ```
+
+1. Verify that the ibmcloud CLI session is configured with a resource group for creation of the Tone Analyzer by the IBM Cloud operator. Run this command:
+
+    ```text
+    ibmcloud target
     ```
 
     Check the output from the `ibmcloud target` command. If there is no resource group set, resulting in a message including:
@@ -102,6 +100,8 @@ END
     ```text
     ibmcloud target -g Default
     ```
+
+    > some older IBM Cloud accounts may have a resource group named `default`, if you see an error using `Default`, repeat the command with `default`.
 
 1. Use the script from the IBM Cloud operator repository to create the API key and add it as a secret to the `default` namespace in the kubernetes cluster:
 
