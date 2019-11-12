@@ -103,10 +103,10 @@ END
 
     > some older IBM Cloud accounts may have a resource group named `default`, if you see an error using `Default`, repeat the command with `default`.
 
-1. Use the script from the IBM Cloud operator repository to create the API key and add it as a secret to the `default` namespace in the kubernetes cluster:
+1. Use the provided script to create an API key for the IBM Cloud Operator and add it as a secret to the `default` namespace in the kubernetes cluster:
 
     ```text
-    curl -sL https://raw.githubusercontent.com/IBM/cloud-operators/master/hack/config-operator.sh | bash
+    ./config-ibmcloud-operator.sh
     ```
 
 1. The operator marketplace catalog provides a URL for the resources to install for each operator. Install the IBM Cloud Operator with the following command:
