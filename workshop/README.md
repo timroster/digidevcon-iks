@@ -4,6 +4,7 @@ In this hands-on lab, you will explore using the [IBM Cloud Kubernetes Service](
 
 Lab Outline:
 
+* Cluster setup - sign in to IBM Cloud and create your Kubernetes cluster
 * Lab setup - get web terminal and content
 * Deploy an application on Kubernetes
 * Scale and Update Deployments
