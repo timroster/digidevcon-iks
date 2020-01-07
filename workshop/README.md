@@ -1,4 +1,4 @@
-# Welcome to the Digital Developer Conference Kubernetes Lab
+# Welcome to the Kubernetes Coder Dojo
 
 In this hands-on lab, you will explore using the [IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service) using a classic Kubernetes example application. To make it interesting for experienced users, we've added a little twist to the [Guestbook](https://github.com/kubernetes/examples/tree/master/guestbook-go) application. If you're new to Kubernetes, don't worry, we'll start with the fundamentals. And if you're experienced with Kubernetes, there's something that's probably new for you as well so hang in there as we all come up to speed.
 
@@ -16,4 +16,4 @@ Lab Outline:
 In the exercises that follow you will see the actual command to run, followed by a separate example of running the command with the expected output. You only need to run the first example and never need to run a command you see preceded by a "$". You can even use the copy button on the right side of the command to make copying easier.
 {% endhint %}
 
-Ready? Let's get started by [setting up a web terminal and getting the code](exercise-0/README.md)
+Ready? Let's get started by [setting up a Kubernetes cluster](exercise-0a/README.md)
