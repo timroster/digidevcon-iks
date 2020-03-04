@@ -14,7 +14,7 @@ Open the control panel for your cluster by clicking on the name.
 
 ![Open Cluster](../.gitbook/assets/open-cluster.png)
 
-Click on the **Web terminal** button.
+Select the **Web terminal** option from the Actions menu in the upper right of the control panel.
 
 ![Open Web Terminal](../.gitbook/assets/open-web-terminal.png)
 
