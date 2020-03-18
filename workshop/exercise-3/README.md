@@ -53,7 +53,7 @@ With the IBM Cloud Kubernetes Service clusters at version 1.16 and later, the Op
 1. Use the provided script to create an API key for the IBM Cloud Operator and add it as a secret to the `default` namespace in the kubernetes cluster:
 
     ```text
-    ./config-ibmcloud-operator.sh
+    $HOME/digidevcon-iks/config-ibmcloud-operator.sh
     ```
 
 1. The operator marketplace catalog provides a URL for the resources to install for each operator. Install the IBM Cloud Operator with the following command:
