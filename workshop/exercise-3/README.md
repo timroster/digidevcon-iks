@@ -1,61 +1,8 @@
-# Installing the Operator Framework and IBM Operator
+# Installing the IBM Cloud Operator
 
 The Operator Framework provides support for Kubernetes-native extensions to manage custom resource types through operators. Many operators are available through [operatorhub.io](https://operatorhub.io/), including the IBM Cloud operator. The IBM Cloud operator simplifies the creation of IBM Cloud services and resouces and binding credentials from these resources into a Kubernetes cluster. The instructions in this guide are adapted from the IBM Developer tutorial [Simplify the lifecycle management process for your Kubernetes apps with operators](https://developer.ibm.com/tutorials/simplify-lifecycle-management-kubernetes-openshift-ibm-cloud-operator/).
 
-## Installing the Operator Framework
-
-1. Begin by applying the Operator Lifecycle Manager (OLM) release to your cluster:
-
-    ```text
-    kubectl apply -f https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.10.0/crds.yaml
-    ```
-
-    ```text
-    kubectl apply -f https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.10.0/olm.yaml
-    ```
-
-    Before continuing, check to ensure that the pods in the `olm` namespace have started. This can take a few minutes for the container images to be pulled and the pods to start.
-
-    ```text
-    kubectl get pods --namespace olm
-    ```
-
-    Wait until there is a total of 6 pods running
-
-    ```console
-    $ kubectl get pods --namespace olm
-    NAME                                READY     STATUS    RESTARTS   AGE
-    catalog-operator-6bb8ffd7c5-4jwwz   1/1       Running   0          2m
-    olm-operator-78ff5d69cf-2ssbs       1/1       Running   0          2m
-    olm-operators-ts4h4                 1/1       Running   0          1m
-    operatorhubio-catalog-q2kwj         1/1       Running   0          1m
-    packageserver-567b8d96b7-d75vp      1/1       Running   0          11s
-    packageserver-567b8d96b7-hlx8g      0/1       Running   0          11s
-    ```
-
-1. Install the Marketplace Operator (allows for adding operators from the operator marketplace). A copy of the marketplace operator deployment files is included in the workshop repository.
-
-    ```text
-    cd $HOME/digidevcon-iks
-    ```
-
-    ```text
-    kubectl apply -f operator-marketplace/deploy/upstream/
-    ```
-
-1. Configure a namespace for the marketplace operators
-
-```text
-kubectl apply -f - <<END
-apiVersion: operators.coreos.com/v1alpha2
-kind: OperatorGroup
-metadata:
-  name: marketplace-operators
-  namespace: marketplace
-END
-```
-
-> At this point, you should be able to easily install any operator from the [operatorhub.io](https://operatorhub.io/) marketplace.
+With the IBM Cloud Kubernetes Service clusters at version 1.16 and later, the Operator Framework is already installed. So all you will need to do is install the IBM Cloud Operator. New clusters created after March 1st, 2020 should all be at this level (or later).
 
 ## Installing the IBM Cloud operator
 
@@ -112,21 +59,21 @@ END
 1. The operator marketplace catalog provides a URL for the resources to install for each operator. Install the IBM Cloud Operator with the following command:
 
     ```text
-    kubectl create -f https://operatorhub.io/install/ibmcloud-operator.yaml
+    curl -sL https://raw.githubusercontent.com/IBM/cloud-operators/master/hack/install-operator.sh | bash
     ```
 
     Check that the pod for the IBM Cloud operator is running with:
 
     ```text
-    kubectl get pods --namespace operators
+    kubectl get pods --namespace ibmcloud-operators
     ```
 
-    You should see after a moment that the pod for the operator is running:
+    You should see after a minute or two that the pod for the operator is running:
 
     ```console
-    $ kubectl get pods --namespace operators
-    NAME                                 READY     STATUS    RESTARTS   AGE
-    ibmcloud-operator-7dd98d9754-lphll   1/1       Running   0          1m
+    $ kubectl get pods -n ibmcloud-operators
+    NAME                                 READY   STATUS    RESTARTS   AGE
+    ibmcloud-operator-76cb79d746-nksq8   1/1     Running   0          8m14s
     ```
 
 ## Understanding Operators
