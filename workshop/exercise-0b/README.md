@@ -23,7 +23,7 @@ ibmcloud ks clusters
 Configure the `kubectl` cli available within the terminal for access to your cluster.
 
 ```text
-eval $(ibmcloud ks cluster-config --cluster mycluster --export)
+ibmcloud ks cluster config --cluster mycluster
 ```
 
 Verify access to the Kubernetes API.
