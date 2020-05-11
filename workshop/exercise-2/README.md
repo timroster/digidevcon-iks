@@ -136,7 +136,7 @@ To update and roll back:
    and (replace *mycluster* below if you used a different name for your cluster):
 
    ```text
-   ibmcloud ks workers mycluster
+   ibmcloud ks workers -c mycluster
    ```
 
    To verify that you're running "v2" of guestbook, press down **shift** while clicking on reload to discard the cached content and look at the title of the page, it should now be `Guestbook - v2`

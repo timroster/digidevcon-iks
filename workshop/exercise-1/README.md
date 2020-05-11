@@ -62,11 +62,11 @@ In this part of the lab we will deploy an application called `guestbook` that ha
 1. `guestbook` is now running on your cluster, and exposed to the internet. We need to find out where it is accessible. The worker nodes running in the container service get external IP addresses. Run `$ ibmcloud cs workers <name-of-cluster>`, and note the public IP listed on the `<public-IP>` line.
 
     ```text
-    ibmcloud ks workers mycluster
+    ibmcloud ks workers -c mycluster
     ```
 
     ```console
-    $ ibmcloud ks workers mycluster
+    $ ibmcloud ks workers -c mycluster
     OK
     ID                                                 Public IP        Private IP     Flavor   State    Status   Zone    Version  
     kube-hou02-pa1e3ee39f549640aebea69a444f51fe55-w1   184.172.252.167  10.76.194.30   free     normal   Ready    hou02   1.14.7_1535
