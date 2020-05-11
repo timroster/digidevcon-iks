@@ -322,11 +322,11 @@ Create a service so that the guestbook application can call the analyzer pod
 You can now play with the guestbook that you just created by opening it in a browser, use the IP and NodePort for your deployment. Find the IP address for your cluster using this command (use the Public IP):
 
 ```text
-ibmcloud ks workers mycluster
+ibmcloud ks workers -c mycluster
 ```
 
 ```console
-$ ibmcloud ks workers mycluster
+$ ibmcloud ks workers -c mycluster
 ID                                                     Public IP         Private IP      Flavor   State    Status   Zone    Version
 kube-bmotc1dd0i2tk1jloing-mycluster-default-0000008d   184.172.252.167   10.76.195.211   free     normal   Ready    hou02   1.14.7_1535
 ```
