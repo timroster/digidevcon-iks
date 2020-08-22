@@ -59,7 +59,7 @@ With the IBM Cloud Kubernetes Service clusters at version 1.16 and later, the Op
 1. The operator marketplace catalog provides a URL for the resources to install for each operator. Install the IBM Cloud Operator with the following command:
 
     ```text
-    curl -sL https://raw.githubusercontent.com/IBM/cloud-operators/master/hack/install-operator.sh | bash
+    curl -sL https://raw.githubusercontent.com/IBM/cloud-operators/master/hack/configure-operator.sh | bash
     ```
 
     Check that the pod for the IBM Cloud operator is running with:
