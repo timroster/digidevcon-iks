@@ -46,7 +46,7 @@ You can return to your IBM Cloud console and see that the tone analyzer service 
 
 1. Go back to your IBM Cloud tab in the browser and click on the words **IBM Cloud** on the upper left of the top menu. Now your Dashboard view will show a Services item under the **Resource summary**
 
-    ![Updated Cloud Dashboard](../.gitbook/assets/updated-cloud-dashboard.png)
+    ![Updated Cloud Dashboard](../assets/updated-cloud-dashboard.png)
 
 1. Click on the label **Services** in the **Resource Summary**, then click on the **mytone** label in the Services list. This will open up the control panel for the IBM Watson Tone Analyzer service.
 
@@ -91,6 +91,6 @@ The operator will monitor the IBM Cloud account service instances. If something 
 
 In the last section of the lab, you will use resource files and the `kubectl create` command to create a complex application topology that is very representative of a typical deployment on Kubernetes. This application will have a web front end written in go, it will persist data entered into the application in a redis database and the application will have an analyzer service witten in python that calls the IBM Watson Tone Analyzer service running outside of the Kubernetes cluster.
 
-![Guestbook Application Topology](../.gitbook/assets/guestbook-topology.png)
+![Guestbook Application Topology](../assets/guestbook-topology.png)
 
 Continue the exercise by [deploying the guestbook application](../exercise-5/README.md)
