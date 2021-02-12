@@ -349,7 +349,7 @@ For this value of IP address and NodePort, you would use a url like `http://184.
 
 Result: The guestbook displays in your browser:
 
-![Guestbook](../.gitbook/assets/guestbook-nodeport.png)
+![Guestbook](../assets/guestbook-nodeport.png)
 
 ## Cleanup
 
