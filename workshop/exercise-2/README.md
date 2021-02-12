@@ -23,7 +23,7 @@ A *replica* is a copy of a pod that contains a running service. By having multip
 
 1. To see your changes being rolled out, you can run:
 
-    ```text
+   ```text
    kubectl rollout status deployment guestbook
    ```
 
@@ -45,7 +45,7 @@ A *replica* is a copy of a pod that contains a running service. By having multip
 
 1. Once the rollout has finished, ensure your pods are running by using:
 
-    ```text
+   ```text
    kubectl get pods
    ```
 
@@ -76,17 +76,17 @@ To update and roll back:
 
 1. Using `kubectl`, you can now update your deployment to use the `v2` image. `kubectl` allows you to change details about existing resources with the `set` subcommand. We can use it to change the image being used.
 
-    ```text
-    kubectl set image deployment/guestbook guestbook=ibmcom/guestbook:v2
-    ```
+   ```text
+   kubectl set image deployment/guestbook guestbook=ibmcom/guestbook:v2
+   ```
 
    Note that a pod could have multiple containers, each with its own name. Each image can be changed individually or all at once by referring to the name. In the case of our `guestbook` Deployment, the container name is also `guestbook`. Multiple containers can be updated at the same time. ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
 
 1. Check the status of the rollout. The rollout might occur so quickly that you may only see `deployment "guestbook" successfully rolled out` for the output.
 
-    ```text
-    kubectl rollout status deployment/guestbook
-    ```
+   ```text
+   kubectl rollout status deployment/guestbook
+   ```
 
    ```console
    $ kubectl rollout status deployment/guestbook

@@ -1,19 +1,8 @@
-language: script
+---
+language: node_js
+node_js: 10
 
-env:
-  global:
-     CF_TARGET_URL="https://api.ng.bluemix.net"
-
-services:
-  - docker
-
+before_script:
+  - npm install markdownlint-cli
 script:
-- bash -n $(find . -name *.sh)
-- ./.verify-links.sh -v
-
-deploy:
-  - provider: script
-    skip_cleanup: true
-    script: echo hi
-    on:
-      all_branches: true
+  - markdownlint -c .markdownlint.json workshop
