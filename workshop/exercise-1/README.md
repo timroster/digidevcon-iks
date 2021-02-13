@@ -6,33 +6,33 @@ In this part of the lab we will deploy an application called `guestbook` that ha
 
 1. Create the `guestbook` application deployment:
 
-   ```text
-   kubectl create deployment guestbook --image=ibmcom/guestbook:v1
-   ```
+    ```text
+    kubectl create deployment guestbook --image=ibmcom/guestbook:v1
+    ```
 
-   This action will take a bit of time. To check the status of the running application, you can use:
+    This action will take a bit of time. To check the status of the running application, you can use:
 
-   ```text
-   kubectl get pods
-   ```
+    ```text
+    kubectl get pods
+    ```
 
-   You should see output similar to the following:
+    You should see output similar to the following:
 
-   ```console
-   $ kubectl get pods
-   NAME                          READY     STATUS              RESTARTS   AGE
-   guestbook-59bd679fdc-bxdg7    0/1       ContainerCreating   0          1m
-   ```
+    ```console
+    $ kubectl get pods
+    NAME                          READY     STATUS              RESTARTS   AGE
+    guestbook-59bd679fdc-bxdg7    0/1       ContainerCreating   0          1m
+    ```
 
-   Eventually, the status should show up as `Running`.
+    Eventually, the status should show up as `Running`.
 
-   ```console
-   $ kubectl get pods
-   NAME                          READY     STATUS              RESTARTS   AGE
-   guestbook-59bd679fdc-bxdg7    1/1       Running             0          1m
-   ```
+    ```console
+    $ kubectl get pods
+    NAME                          READY     STATUS              RESTARTS   AGE
+    guestbook-59bd679fdc-bxdg7    1/1       Running             0          1m
+    ```
 
-   The end result of the run command is not just the pod containing our application containers, but a **Deployment** resource that manages the lifecycle of those pods.
+    The end result of the run command is not just the pod containing our application containers, but a **Deployment** resource that manages the lifecycle of those pods.
 
 1. Once the status reads `Running`, we need to expose that deployment as a **Service** so that it can be accessed. By specifying a service type of `NodePort`, the service will also be mapped to a high-numbered port on each cluster node. The `guestbook` application listens on port 3000, so this is also specified in the command.  Run:
 
@@ -40,10 +40,10 @@ In this part of the lab we will deploy an application called `guestbook` that ha
     kubectl expose deployment guestbook --type="NodePort" --port=3000
     ```
 
-   ```console
-   $ kubectl expose deployment guestbook --type="NodePort" --port=3000
-   service "guestbook" exposed
-   ```
+    ```console
+    $ kubectl expose deployment guestbook --type="NodePort" --port=3000
+    service "guestbook" exposed
+    ```
 
 1. To find the port used on that worker node, examine your new service:
 
@@ -51,13 +51,13 @@ In this part of the lab we will deploy an application called `guestbook` that ha
     kubectl get service guestbook
     ```
 
-   ```console
-   $ kubectl get service guestbook
-   NAME        TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-   guestbook   NodePort   172.21.12.235   <none>        3000:30805/TCP   1m
-   ```
+    ```console
+    $ kubectl get service guestbook
+    NAME        TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+    guestbook   NodePort   172.21.12.235   <none>        3000:30805/TCP   1m
+    ```
 
-   The output shows that the `<nodeport>` is `30805`. The service will take incoming connections to the high numbered port, `30805` and forward to port `3000` to the container inside the pod. For a service of type NodePort, a port in the range 30000-32767 is automatically chosen, and could be different for you.
+    The output shows that the `<nodeport>` is `30805`. The service will take incoming connections to the high numbered port, `30805` and forward to port `3000` to the container inside the pod. For a service of type NodePort, a port in the range 30000-32767 is automatically chosen, and could be different for you.
 
 1. `guestbook` is now running on your cluster, and exposed to the internet. We need to find out where it is accessible. The worker nodes running in the container service get external IP addresses. Run `$ ibmcloud cs workers <name-of-cluster>`, and note the public IP listed on the `<public-IP>` line.
 

@@ -195,7 +195,7 @@ This is a simple Go `net/http` ([negroni](https://github.com/codegangsta/negroni
     deployment.apps/guestbook-v2 created
     ```
 
-> Tip: If you want to modify the guestbook code it can be found in the `guestbook` directory, along with its Makefile. If you have pushed your custom image be sure to update the `image` property accordingly in the guestbook-deployment.yaml.
+    > Tip: If you want to modify the guestbook code it can be found in the `guestbook` directory, along with its Makefile. If you have pushed your custom image be sure to update the `image` property accordingly in the guestbook-deployment.yaml.
 
 1. Verify that the guestbook deployment is running:
 
