@@ -6,14 +6,15 @@ site_author: IBM Developer
 # Repository
 repo_name: digidevcon-iks
 repo_url: https://github.com/timroster/digidevcon-iks
-edit_uri: edit/master/workshop
+edit_uri: edit/main/workshop
 docs_dir: workshop
 
 # Navigation
 nav:
   #- Workshop:
   - About the workshop: README.md
-  - Lab setup - get web terminal and content: exercise-0/README.md
+  - Kubernetes Cluster setup: exercise-0a/README.md
+  - Lab setup - get web terminal and content: exercise-0b/README.md
   - Deploy an application on Kubernetes: exercise-1/README.md
   - Scale and Update Deployments: exercise-2/README.md
   - Installing the IBM Cloud Operator: exercise-3/README.md
