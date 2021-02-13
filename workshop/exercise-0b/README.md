@@ -8,7 +8,7 @@ Log in to the [IBM Cloud](https://cloud.ibm.com) to access the dashboard.
 
 Click on the top right terminal icon to launch the **IBM Cloud Shell**.
 
-![IBM Cloud Shell](../.gitbook/assets/cloud-shell.png)
+![IBM Cloud Shell](../assets/assets/cloud-shell.png)
 
 Run the `ibmcloud ks clusters` command to verify the terminal and setup for access to the cluster
 
@@ -18,7 +18,7 @@ ibmcloud ks clusters
 
 > it's ok to ignore warnings you may see about versions of plugins or kubernetes cluster versions
 
-![Confirm cluster access](../.gitbook/assets/terminal-ready.png)
+![Confirm cluster access](../assets/assets/terminal-ready.png)
 
 Configure the `kubectl` cli available within the terminal for access to your cluster.
 

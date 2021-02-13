@@ -11,7 +11,7 @@ Begin with the appropriate step for you, if you don't already have an IBM Cloud 
 
 If you do not have an IBM Cloud account go to [IBM Cloud Registration](https://cloud.ibm.com/registration).
 
-![IBM Cloud Registration](../.gitbook/assets/cloud-registration.png)
+![IBM Cloud Registration](../assets/assets/cloud-registration.png)
 
 Complete all of the fields and then click on the **Create Account** button.
 
@@ -25,11 +25,11 @@ Log in to the [IBM Cloud](https://cloud.ibm.com) to access the dashboard.
 
 Click on the top left navigation menu and select **Kubernetes**.
 
-![Navigation Menu](../.gitbook/assets/navigation-menu.png)
+![Navigation Menu](../assets/assets/navigation-menu.png)
 
 In the **Kubernetes Cluster** tile in the middle of the screen, click on the **Create cluster** button.
 
-![Kubernetes dashboard](../.gitbook/assets/kubernetes-dash.png)
+![Kubernetes dashboard](../assets/assets/kubernetes-dash.png)
 
 This will bring you to a page where you can select a cluster plan type.
 
@@ -45,7 +45,7 @@ To apply the feature code to your account, click in the top menu **Manage->Accou
 
 Scroll in the main panel to the *Subscription and feature codes* section and click on **Apply code**.
 
-![Apply Feature Code](../.gitbook/assets/feature-code-apply.png)
+![Apply Feature Code](../assets/assets/feature-code-apply.png)
 
 Enter in the feature code and select **Apply**
 
@@ -53,7 +53,7 @@ After the code is applied - Click on the top left navigation menu and select **K
 
 In the **Kubernetes Cluster** tile in the middle of the screen, click on the **Create cluster** button.
 
-![Kubernetes dashboard](../.gitbook/assets/kubernetes-dash.png)
+![Kubernetes dashboard](../assets/assets/kubernetes-dash.png)
 
 This will bring you to a page where you can select a cluster plan type.
 

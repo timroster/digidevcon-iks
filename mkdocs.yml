@@ -1,0 +1,97 @@
+# Project information
+site_name: Digital Developer Conference Kubernetes Lab
+site_url: https://timroster.github.io/digidevcon-iks
+site_author: IBM Developer
+
+# Repository
+repo_name: digidevcon-iks
+repo_url: https://github.com/timroster/digidevcon-iks
+edit_uri: edit/master/workshop
+docs_dir: workshop
+
+# Navigation
+nav:
+  #- Workshop:
+  - About the workshop: README.md
+  - Lab setup - get web terminal and content: exercise-0/README.md
+  - Deploy an application on Kubernetes: exercise-1/README.md
+  - Scale and Update Deployments: exercise-2/README.md
+  - Installing the IBM Cloud Operator: exercise-3/README.md
+  - Creating an instance of Tone Analyzer: exercise-4/README.md
+  - Deploy the Guestbook Application with the Tone Analyzer: exercise-5/README.md
+
+## DO NOT CHANGE BELOW THIS LINE
+
+# Copyright
+copyright: Copyright &copy; 2021 IBM Developer
+
+# Theme
+theme:
+  name: material
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  icon:
+    logo: material/library
+  features:
+    - navigation.instant
+    - navigation.expand
+  palette:
+    scheme: default
+    primary: blue
+    accent: blue
+
+# Plugins
+plugins:
+  - search
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ibm
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ibmdeveloper
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/ibm/
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/user/developerworks
+    - icon: fontawesome/brands/dev
+      link: https://dev.to/ibmdeveloper
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
