@@ -6,39 +6,39 @@ For an application running within a Kubernetes cluster to be able to access an I
 
 1. Change into the `digidevcon-iks` directory. apply the `tone.yaml` file. This file defines a **Service** and **Binding** resource:
 
-    ```console
-    cd $HOME/digidevcon-iks
-    ```
+   ```console
+   cd $HOME/digidevcon-iks
+   ```
 
 1. Apply the `tone.yaml` file using kubectl. This file defines a **Service** and **Binding** resource:
 
-    ```text
-    kubectl apply -f tone.yaml
-    ```
+   ```text
+   kubectl apply -f tone.yaml
+   ```
 
-    This file defines a **Service** and **Binding** resource and if successful there will be confirmation for both:
+   This file defines a **Service** and **Binding** resource and if successful there will be confirmation for both:
 
-    ```console
-    $ kubectl apply -f tone.yaml
-    service.ibmcloud.ibm.com/mytone created
-    binding.ibmcloud.ibm.com/binding-tone created
-    ```
+   ```console
+   $ kubectl apply -f tone.yaml
+   service.ibmcloud.ibm.com/mytone created
+   binding.ibmcloud.ibm.com/binding-tone created
+   ```
 
 1. Check for the secret for the Tone Analyzer service instance added to the current namespace:
 
-    ```text
-    kubectl get secret binding-tone
-    ```
+   ```text
+   kubectl get secret binding-tone
+   ```
 
-    You should see confirmation of the secret, but there may be a short delay as the credentials are obtained by the operator, so repeat this command until you no longer see an error like: *Error from server (NotFound): secrets "binding-tone" not found*
+   You should see confirmation of the secret, but there may be a short delay as the credentials are obtained by the operator, so repeat this command until you no longer see an error like: *Error from server (NotFound): secrets "binding-tone" not found*
 
-    ```bash
-    $ kubectl get secret binding-tone
-    NAME           TYPE      DATA      AGE
-    binding-tone   Opaque    6         40s
-    ```
+   ```bash
+   $ kubectl get secret binding-tone
+   NAME           TYPE      DATA      AGE
+   binding-tone   Opaque    6         40s
+   ```
 
-    With the credentials added to the current namespace, you will be able to deploy guestbook application that uses the analyzer microservice. But first, let's do a little checking of the actions by the IBM Cloud operator.
+   With the credentials added to the current namespace, you will be able to deploy guestbook application that uses the analyzer microservice. But first, let's do a little checking of the actions by the IBM Cloud operator.
 
 ## Check the IBM Cloud console - verify the Tone Analyzer serivce
 
